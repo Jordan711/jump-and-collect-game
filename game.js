@@ -78,9 +78,9 @@ function update () {
 
   if (keyControl) {
     if (cursors.left.isDown) {
-      player.body.velocity.x -= 150
+      player.body.velocity.x -= 200
     } else if (cursors.right.isDown) {
-      player.body.velocity.x += 250
+      player.body.velocity.x += 200
     }
 
     if (cursors.up.isDown && player.body.touching.down) {
