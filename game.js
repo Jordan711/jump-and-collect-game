@@ -89,7 +89,7 @@ function update () {
   }
 
   if (score == 12) {
-    coreText.position.x = 200
+    scoreText.position.x = 200
     scoreText.position.y = 200
     scoreText.text = "Yey u win :DDDD"
     scoreText.fontSize = "55 px"
