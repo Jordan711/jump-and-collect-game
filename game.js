@@ -12,6 +12,7 @@ let coin
 let score = 0
 let scoreText
 let keyControl = true
+let spaceKey
 
 function preload () {
   game.load.image("background", "./assets/background.png")
@@ -38,10 +39,9 @@ function create () {
   ledge.body.immovable = true
   ledge.width = 40
 
-  ledge = platforms.create(75, 350, 'floor')
+  ledge = platforms.create(0, 350, 'floor')
   ledge.body.immovable = true
   ledge.width = 40
-
 
   player = game.add.sprite(32, game.world.height - 550, "block")
   game.physics.arcade.enable(player)
@@ -63,10 +63,13 @@ function create () {
     coins.body.collideWorldBounds = true
   }
 
-  scoreText = game.add.text(16, 16, '', {fontsize: '32 px', fill: '#000'})
+  scoreText = game.add.text(16, 16, '', {font: '32pt Arial', fill: '#000'})
   scoreText.text = "Score: " + score
-  cursors = game.input.keyboard.createCursorKeys()
 
+  instrText = game.add.text(16, 55, '', {font: '16pt Arial', fill: '#000'})
+  instrText.text = "Press SPACE to restart."
+  cursors = game.input.keyboard.createCursorKeys()
+  spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 }
 
 
@@ -86,13 +89,17 @@ function update () {
     if (cursors.up.isDown && player.body.touching.down) {
       player.body.velocity.y -= 500
     }
+
+    if (spaceKey.isDown) {
+      create()
+    }
   }
 
   if (score == 12) {
-    scoreText.position.x = 200
+    scoreText.position.x = 300
     scoreText.position.y = 200
     scoreText.text = "Yey u win :DDDD"
-    scoreText.fontSize = "55 px"
+    scoreText.cssFont = "55pt Arial"
     keyControl = false
   }
 }
